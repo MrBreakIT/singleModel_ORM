@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users with Templates</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <style>
+        h1{
+            margin-left: 38%;
+        }
+        .lower{
+            margin-top: 25px;
+            padding: 10px
+            /* display: flex; */
+            /* justify-content: center; */
+        }
+        h3{
+            margin-left: 40%;
+        }
+        form{
+            margin-left: 15%;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="">
+            <h1>All the Users</h1>
+            <table class="table w-100 table-bordered table-striped table-hover table-dark">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Age</th>
+                    </tr>
+                </thead>
+
+
+                <tbody class="table-hover">
+                    {% for user in users_app %}
+                    <tr>
+                        <td scope="col">{{user.id}}</td>
+                        <td scope="col">{{user.fname}} {{user.lname}}</td>
+                        <td scope="col">{{user.email}}</td>
+                        <td scope="col">{{user.age}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="lower">
+            <!-- <hr width="80%" size="8" color=#black> -->
+            <hr size=""  noshade>
+            <h3>Add a User</h3>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <input type="text" name="fname" placeholder="First Name">
+                <input type="text" name="lname" placeholder="Last Name">
+                <!-- <div> -->
+                <input type="text" name="email" placeholder="Email">
+                <input type="integer" name="age" placeholder="Age">
+                <!-- </div> -->
+                <button type="submit" class="btn btn-secondary btn-sm">Add User</button>
+            </form>
+            <!-- <div>
+            <form action="/deleteUser">
+                <button type="submit">Delete User ID</button>
+            </form>
+        </div> -->
+        </div>
+    </div>
+</body>
+
+</html>
